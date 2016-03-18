@@ -5,9 +5,13 @@ import { Component } from 'angular2/core';
   template: `
     <header>
       <nav>
-        <h1>Todo App</h1>
+        <h1>{{ title }}</h1>
       </nav>
     </header>
   `
 })
-export class Header {}
+export class Header {
+
+  title:string = "My first angular2 ngrx app";
+
+}

@@ -1,6 +1,4 @@
-/*
- * Providers provided by Angular
- */
+// Import the Providers provided by Angular.
 import * as browser from 'angular2/platform/browser';
 import * as ngCore from 'angular2/core';
 import {
@@ -9,15 +7,19 @@ import {
   LocationStrategy,
   HashLocationStrategy
 } from 'angular2/router';
-import {FORM_PROVIDERS} from 'angular2/common';
-import {HTTP_PROVIDERS} from 'angular2/http';
+import { FORM_PROVIDERS } from 'angular2/common';
+import { HTTP_PROVIDERS } from 'angular2/http';
 
-/*
- * App Component
- * our top level component that holds all of our components
- */
-import {App} from './app/app';
-import {RouterActive} from './app/directives/router-active';
+// Import the Store to be injected.
+import { STORE } from './app/store';
+
+// Import the Services to be injected.
+import { ItemsService } from './app/services/items.service';
+
+// Import the App Component (top level component).
+import { App }          from './app/app';
+import { RouterActive } from './app/directives/router-active';
+
 
 /*
  * Application Providers/Directives/Pipes
@@ -61,7 +63,9 @@ export function main() {
   return browser.bootstrap(App, [
     ...APPLICATION_PROVIDERS,
     ngCore.provide(ngCore.PLATFORM_DIRECTIVES, {useValue: APPLICATION_DIRECTIVES, multi: true}),
-    ngCore.provide(ngCore.PLATFORM_PIPES, {useValue: APPLICATION_PIPES, multi: true})
+    ngCore.provide(ngCore.PLATFORM_PIPES, {useValue: APPLICATION_PIPES, multi: true}),
+    ItemsService,
+    STORE  // Inject the app store.
   ])
   .catch(err => console.error(err));
 }
